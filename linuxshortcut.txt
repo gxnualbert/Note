@@ -147,6 +147,13 @@ gsettings set org.gnome.gedit.preferences.encodings auto-detected "['GB18030', '
 
 32.VMware中设置全屏和退出全屏：Ctrl+Alt+Enter
 
+33.Git 中给文件家或文件重命名
+git mv 原文件名 修改后文件名
+git add 修改后文件名
+git commit
+git push -u origin master
+
+
 
 
 
