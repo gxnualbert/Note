@@ -141,6 +141,13 @@ http://www.linuxidc.com/Linux/2016-07/132835.htm
 设置连接桌面的大小vncserver :1 -geometry 1920x1080
 开端口的参考文章http://www.cnblogs.com/kerrycode/p/3315793.html
 
+31.CentOS 中gedit中文乱码
+在终端中输入如下命令即可解决乱码问题：
+gsettings set org.gnome.gedit.preferences.encodings auto-detected "['GB18030', 'GB2312', 'GBK', 'UTF-8']"
+
+32.VMware中设置全屏和退出全屏：Ctrl+Alt+Enter
+
+
 
 
 
