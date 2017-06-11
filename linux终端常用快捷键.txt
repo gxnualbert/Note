@@ -1,13 +1,146 @@
-Shift+Ctrl+C:复制
-Shift+Ctrl+V:粘贴
+1.Shift+Ctrl+C:复制
+2.Shift+Ctrl+V:粘贴
 
-终端改变大小：
-F11：全屏，再按F11就恢复到原来大小
+3.终端改变大小：
+4.F11：全屏，再按F11就恢复到原来大小
 
-Shift+Ctrl+Q:关闭终端
+5.Shift+Ctrl+Q:关闭终端
 
-查看端口号是否被占用？
+6.查看端口号是否被占用？
 netstart -apn |grep 端口号
+lsof -i：80      查看端口号80 被那些程序占用
 
-xshell无法用root用户登录
+7.xshell无法用root用户登录
 /etc/ssh/sshd_config中 permitrootlogin以设置为yes
+
+8.列出所有正在运行的服务
+ps afx
+
+9.在python中引用logging
+参考链接：http://blog.csdn.net/chosen0ne/article/details/7319306#
+Python的logging模块提供了通用的日志系统，可以方便第三方模块或者是应用使用。这个模块提供不同的日志级别，并可以采用不同的方式记录日志，比如文件，HTTP GET/POST，SMTP，Socket等，甚至可以自己实现具体的日志记录方式。
+logging模块与log4j的机制是一样的，只是具体的实现细节不同。模块提供logger，handler，filter，formatter。
+logger：提供日志接口，供应用代码使用。logger最长用的操作有两类：配置和发送日志消息。可以通过logging.getLogger(name)获取logger对象，如果不指定name则返回root对象，多次使用相同的name调用getLogger方法返回同一个logger对象。
+handler：将日志记录（log record）发送到合适的目的地（destination），比如文件，socket等。一个logger对象可以通过addHandler方法添加0到多个handler，每个handler又可以定义不同日志级别，以实现日志分级过滤显示。
+filter：提供一种优雅的方式决定一个日志记录是否发送到handler。
+formatter：指定日志记录输出的具体格式。formatter的构造方法需要两个参数：消息的格式字符串和日期字符串，这两个参数都是可选的。
+与log4j类似，logger，handler和日志消息的调用可以有具体的日志级别（Level），只有在日志消息的级别大于logger和handler的级别
+
+1.	import logging  
+2.	import logging.handlers  
+3.	  
+4.	LOG_FILE = 'tst.log'  
+5.	  
+6.	handler = logging.handlers.RotatingFileHandler(LOG_FILE, maxBytes = 1024*1024, backupCount = 5) # 实例化handler   
+7.	fmt = '%(asctime)s - %(filename)s:%(lineno)s - %(name)s - %(message)s'  
+8.	  
+9.	formatter = logging.Formatter(fmt)   # 实例化formatter  
+10.	handler.setFormatter(formatter)      # 为handler添加formatter  
+11.	  
+12.	logger = logging.getLogger('tst')    # 获取名为tst的logger  
+13.	logger.addHandler(handler)           # 为logger添加handler  
+14.	logger.setLevel(logging.DEBUG)  
+15.	  
+16.	logger.info('first info message')  
+17.	logger.debug('first debug message')
+
+10.Linux 磁盘空间满，删除磁盘空间？
+查看磁盘空间：df -hl
+du -sh *
+du -sh : 查看当前目录总共占的容量。而不单独列出各子项占用的容量 
+linux 查看某个目录下文件夹大小？ 去到该目录下，直接du -sh *
+
+11.Centos安装pip
+先安装wget -q http://peak.telecommunity.com/dist/ez_setup.py
+然后python ez_setup.py
+最后下载wget --no-check-certificate https://github.com/pypa/pip/archive/1.5.5.tar.gz --no-check-certificate
+tar zvxf 1.5.5.tar.gz    #解压文件
+cd pip-1.5.5/
+python setup.py install
+
+12.Django Apache 部署
+http://www.cnblogs.com/fengzheng/p/3619406.html
+
+13.如何查看linux是多少位系统？
+uname -a
+cat /etc/redhat-release
+
+14.在Centos7安装Protobuf
+http://www.linuxidc.com/Linux/2016-12/138716.htm
+
+15.如何生成python 版的protobuf文件？
+在python的陆慕下，打开终端，然后输入如下命令：
+protoc -I=./pb_source --python_out=./pb_out ./pb_source/fsp-common.proto
+protoc -I=./pb_source --python_out=./pb_out ./pb_source/fsp-smd.proto
+
+16.Python使用protubuf？
+先写一个fsp-proto.proto 格式的文件，然后转化成python版的fsp-proto_pb2.py 文件（貌似我们要用pb3）
+在pycharm中导入生成的fsp-proto_pb2.py，然后就可以先实例化里面的消息，并初始化各种参数。如下图所示，是一个序列化和反序列化的过程
+
+Python protobuf repeated
+http://stackoverflow.com/questions/23726335/how-to-assign-to-repeated-field
+
+17.Pycharm 如何在centos 建立快捷图标？
+在工具栏中点Tools，然后选择 Create DeskTop Entry…, 最后在应用程序，编程中即可找到Pycharm的启动图标。
+
+18.Kafka 查看topic
+./kafka-topics.sh --list --zookeeper 192.168.64:2181,192.168.7.65:2181,192.168.7.66:2181
+./kafka-topics.sh --list --zookeeper 43.248.96.145:2181,43.248.96.143:2181,118.192.153.175:2181
+
+19.Kafka 生产消息
+./kafka-console-producer.sh --broker-list 59.46.12.246:9092,183.232.235.58:9092,160.19.50.154:9092 --topic test
+
+20.kafka消费消息
+./kafka-console-consumer.sh –zookeeper 192.168.7.64:2181, 192.168.7.65:2181, 192.168.7.66:2181--from-beginning --topic test
+./kafka-console-consumer.sh --zookeeper 43.248.96.145:2181,43.248.96.143:2181,118.192.153.175:2181 --from-beginning --topic test
+
+21.kafka create topic 创建topic
+Kafka创建topic命令很简单，一条命令足矣：bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic test   
+./kafka-topics.sh --create  --zookeeper 43.248.96.145:2181,43.248.96.143:2181,118.192.153.175:2181 --replication-factor 3 --partitions 3 --topic test   
+
+这条命令会创建一个名为test的topic，有3个分区，每个分区需分配3个副本。
+
+22.在centos 中不到JPS
+今天在linux下查看进程，使用命令jps，可是却提示找不到命令。后来百度了一下，知道是因为没有Java。安装好Java并设置好环境变量之后，就可以找到jps了。
+http://www.cnblogs.com/shengxinge0815/archive/2012/01/06/2314765.html
+
+23.kafka manager 的安装
+由于网络原因，用别人编译好的包来安装
+http://www.cnblogs.com/yinchengzhe/p/5126360.html
+最后启动时，直接去到bin 目录下启动即可./kafka-manager
+路径为：/root
+
+24.Scp 或者ssh 失败
+http://blog.csdn.net/ausboyue/article/details/52775281
+
+25.error: command 'gcc' failed with exit status 1
+yum groupinstall "Development tools"
+
+26.升级curl的时候失败
+https://serverfault.com/questions/792394/upgrading-curl-on-centos-6-libcurl-7-50-requires-libnghttp2
+
+27.访问FTP失败
+由于5.15爆发的WannaCry病毒，导致本机的ip地址变了（动态获取），所以访问旧的ip地址失败。修改已有的ftp配置即可。
+主要参考链接http://jingyan.baidu.com/article/574c5219d466c36c8d9dc138.html
+
+28.Centos 设置中文输入法
+http://blog.csdn.net/wu_wxc/article/details/48414787
+
+
+29.Centos 设置开机网络自动启动
+https://my.oschina.net/u/573270/blog/478772
+首先找到路径，当达到最后一个的时候，可以先打ifcfg-,然后tab键补全
+最后将ONBOOT=no改成yes，保存，重启机器即可
+
+30.Centos7 安装vncserver，windows远程连接linux
+http://www.linuxidc.com/Linux/2016-07/132835.htm
+记得在最后要关闭防火墙或者开启相应端口
+[root@localhost ~]# iptables -I INPUT -p tcp --dport 5901 -j ACCEPT
+[root@localhost ~]# iptables -I INPUT -p tcp --dport 5902 -j ACCEPT
+ vncserver -kill :1
+设置连接桌面的大小vncserver :1 -geometry 1920x1080
+开端口的参考文章http://www.cnblogs.com/kerrycode/p/3315793.html
+
+
+
+
