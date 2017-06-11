@@ -1,0 +1,13 @@
+Shift+Ctrl+C:复制
+Shift+Ctrl+V:粘贴
+
+终端改变大小：
+F11：全屏，再按F11就恢复到原来大小
+
+Shift+Ctrl+Q:关闭终端
+
+查看端口号是否被占用？
+netstart -apn |grep 端口号
+
+xshell无法用root用户登录
+/etc/ssh/sshd_config中 permitrootlogin以设置为yes
