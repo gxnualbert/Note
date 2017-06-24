@@ -141,6 +141,7 @@ http://www.linuxidc.com/Linux/2016-07/132835.htm
 设置连接桌面的大小vncserver :1 -geometry 1920x1080
 开端口的参考文章http://www.cnblogs.com/kerrycode/p/3315793.html
 
+
 查找命令
 /pattern<Enter> ：向下查找pattern匹配字符串 
 ?pattern<Enter>：向上查找pattern匹配字符串 
@@ -151,6 +152,20 @@ N：按照反方向查找
 替换
 :1,$ s/str1/str2/g     #注意，替换完之后，还要保存文件才生效。用字符串 str2 替换正文中所有出现的字符串 str1
 参考文章http://blog.csdn.net/lanxinju/article/details/5731843
+
+31.CentOS 中gedit中文乱码
+在终端中输入如下命令即可解决乱码问题：
+gsettings set org.gnome.gedit.preferences.encodings auto-detected "['GB18030', 'GB2312', 'GBK', 'UTF-8']"
+
+32.VMware中设置全屏和退出全屏：Ctrl+Alt+Enter
+
+33.Git 中给文件家或文件重命名
+git mv 原文件名 修改后文件名
+git add 修改后文件名
+git commit
+git push -u origin master
+
+
 
 
 
