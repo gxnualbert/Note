@@ -170,8 +170,33 @@ Ctrl + k ：从光标处删除至命令行尾
 Ctrl + a ：移到命令行首
 Ctrl + e ：移到命令行尾
 
+36.Linux 下的动态库
+参考链接：http://www.cppblog.com/deane/articles/165216.html
+1.2库的种类
+linux下的库有两种：静态库和共享库（动态库）。
+二者的不同点在于代码被载入的时刻不同。
+静态库的代码在编译过程中已经被载入可执行程序，因此体积较大。
+共享库的代码是在可执行程序运行时才载入内存的，在编译过程中仅简单的引用，因此代码体积较小。
 
+在linux下，库文件一般放在/usr/lib和/lib下，
+静态库的名字一般为libxxxx.a，其中xxxx是该lib的名称
+动态库的名字一般为libxxxx.so.major.minor，xxxx是该lib的名称，major是主版本号， minor是副版本号
 
+1.6如何知道一个可执行程序依赖哪些库
+ldd命令可以查看一个可执行程序依赖的共享库，
+例如# ldd /bin/lnlibc.so.6
+=> /lib/libc.so.6 (0×40021000)/lib/ld-linux.so.2
+=> /lib/ld- linux.so.2 (0×40000000)
+可以看到ln命令依赖于libc库和ld-linux库
+
+如：export LD_LIBRARY_PATH=’pwd’
+将当前文件目录添加为共享目录
+
+1.8在新安装一个库之后如何让系统能够找到他
+如果安装在/lib或者/usr/lib下，那么ld默认能够找到，无需其他操作。
+如果安装在其他目录，需要将其添加到/etc/ld.so.cache文件中，步骤如下
+1.编辑/etc/ld.so.conf文件，加入库文件所在目录的路径
+2.运行ldconfig，该命令会重建/etc/ld.so.cache文件
 
 
 
