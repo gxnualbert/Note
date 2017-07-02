@@ -153,7 +153,24 @@ git add 修改后文件名
 git commit
 git push -u origin master
 
-34. shit+v 
+34.查找命令
+/pattern<Enter> ：向下查找pattern匹配字符串 
+?pattern<Enter>：向上查找pattern匹配字符串 
+使用了查找命令之后，使用如下两个键快速查找： 
+n：按照同一方向继续查找 
+N：按照反方向查找
+
+替换
+:1,$ s/str1/str2/g     #注意，替换完之后，还要保存文件才生效。用字符串 str2 替换正文中所有出现的字符串 str1
+参考文章http://blog.csdn.net/lanxinju/article/details/5731843
+
+35.终端中命令行快捷键
+Ctrl + u ：从光标处删除至命令行首
+Ctrl + k ：从光标处删除至命令行尾
+Ctrl + a ：移到命令行首
+Ctrl + e ：移到命令行尾
+
+
 
 
 
