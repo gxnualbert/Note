@@ -211,4 +211,30 @@ ldd命令可以查看一个可执行程序依赖的共享库，
 PyCharm设置模板
 https://github.com/gxnualbert/PythonCodeSkill/blob/master/2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Pycharm%E8%AE%BE%E7%BD%AE%E6%A8%A1%E6%9D%BF.py
 
+git版本回退
+今天想跑一下python版kafka生产消息和消费消息，但是去虚拟机一看，傻眼了，那个库已经被删掉了，然后从git的日志里看，发现library这个文件夹在7月6号已经被删除了
+于是我就回退它。
+回退步骤：
+先git log 查看之前所有的历史提交信息，找到删除library的提交是哪一次，然后通过git reset --hard  commitid 回退即可。
+回退完之后，又想回到未来，那么就用git reflog 查看，然后再git reset --hard 4678cef即可
+
+unzip  -q fsp-access*.war
+unzip  -uq fsp-access*.war
+其中-q 是解压时不显示任何信息
+
+Linux 中机器7.83登录7.81时出现Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+解决办法：将7.83 下的id_rsa.pub复制到7.81，
+id_rsa.pub的路径：cd ~/.ssh/
+如下：
+现将id_rsa.pub复制到目的机器/root/
+scp id_rsa.pub root@192.168.7.81:/root/
+然后追加到authorized_keys
+cat /root/id_rsa.pub >> /root/.ssh/authorized_keys
+
+http://www.cnblogs.com/dynwings/p/7063437.html
+
+注意，后面的路径一定千万不能写错！！！如果发现执行了该命令仍出现 Permission denied，建议1、检查路径2、去目的机器看是否真的加上去了
+
+
+
 
